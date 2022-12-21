@@ -1,8 +1,9 @@
 import { Box, Slider, Text } from 'native-base'
 import React, { useState } from 'react'
-import { FilterProps } from '../modules/home'
+import { FilterProps } from '..'
 
 export default function SliderTIme({ handleFilters }: FilterProps) {
+
 
   const [sliderValue, setSliderValue] = useState(45)
   const handleValue = (e: number) => {

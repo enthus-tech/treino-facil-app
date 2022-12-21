@@ -3,8 +3,10 @@ import * as Localization from 'expo-localization';
 import { observer } from 'mobx-react-lite';
 import { NativeBaseProvider } from 'native-base';
 import 'react-native-gesture-handler';
+import 'react-native-url-polyfill/auto';
 import { i18n } from './src/base/translations/translate';
 import { AppNavigation } from './src/navigation';
+
 
 
 

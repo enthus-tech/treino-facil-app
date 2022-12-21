@@ -1,6 +1,6 @@
 import { Box, Center, Select } from 'native-base'
 import React from 'react'
-import { FilterProps } from '../modules/home'
+import { FilterProps } from '..'
 
 
 export const SelectTrain = ({ handleFilters }: FilterProps) => {

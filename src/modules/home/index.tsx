@@ -1,9 +1,10 @@
 import { useNavigation } from '@react-navigation/native';
 import { Button, Center, ScrollView } from 'native-base';
 import { useState } from 'react';
-import RadioLocal from '../../components/RadioLocal';
-import { SelectTrain } from '../../components/SelectTrain';
-import SliderTIme from '../../components/SliderTIme';
+import { SelectTrain } from './components/SelectTrain';
+import SliderTIme from './components/SliderTIme';
+import SwitchLocal from './components/SwitchLocal';
+import { homeStore } from './store';
 
 export interface FilterProps {
   handleFilters: (key: string, value: string) => void
@@ -11,7 +12,7 @@ export interface FilterProps {
 
 
 export const Home = () => {
-  const [filters, setFilters] = useState({})
+  const [filters, setFilters] = useState({ space: 'academia' })
   const navigation = useNavigation()
 
   const handleFilters = (key: string, value: string) => {
@@ -20,16 +21,15 @@ export const Home = () => {
 
 
     setFilters({ ...filters, ...filter });
-    console.log(filters);
   }
 
   return (
     <ScrollView backgroundColor={'red.100'}>
       <SelectTrain handleFilters={handleFilters} />
       <SliderTIme handleFilters={handleFilters} />
-      <RadioLocal handleFilters={handleFilters} />
+      <SwitchLocal handleFilters={handleFilters} />
       <Center>
-        <Button onPress={() => console.log('reste')}
+        <Button onPress={() => homeStore.sendPrompt(filters)}
           maxW="100">
           Gerar treino
         </Button>
