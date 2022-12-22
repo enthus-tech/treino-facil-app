@@ -17,10 +17,12 @@ export const Home = () => {
 
   const handleFilters = (key: string, value: string) => {
     const filter = { [key]: value };
-
-
-
     setFilters({ ...filters, ...filter });
+  }
+
+  const sendWorkout = () => {
+    navigation.navigate('workout');
+    homeStore.sendPrompt(filters)
   }
 
   return (
@@ -29,7 +31,7 @@ export const Home = () => {
       <SliderTIme handleFilters={handleFilters} />
       <SwitchLocal handleFilters={handleFilters} />
       <Center>
-        <Button onPress={() => homeStore.sendPrompt(filters)}
+        <Button onPress={() => sendWorkout()}
           maxW="100">
           Gerar treino
         </Button>

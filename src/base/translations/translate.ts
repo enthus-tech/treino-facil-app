@@ -14,5 +14,3 @@ export const t = (data: string) => {
 }
 
 export const i18n = new I18n(translations);
-
-console.log(i18n);

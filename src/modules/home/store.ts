@@ -4,29 +4,32 @@ import { Store } from '../../base/store';
 
 
 export class HomeStore extends Store {
-  workout = '';
+  workout?: string = ''
+  loading = false;
 
   constructor() {
     super()
     makeObservable(this, {
       workout: observable,
+      loading: observable,
       sendPrompt: action,
     });
   }
   sendPrompt = async (data: any) => {
     const { space, treino, tempo } = data
+    this.loading = true;
     const response = await openAi.createCompletion({
-      model: "code-davinci-002",
-      prompt: `treino de ${treino} para ser feito em ${tempo} minutos em ${space}?`,
+      model: "text-davinci-003",
+      prompt: `lista de exercicios para ${treino}, com tempo máximo de ${tempo} minutos feito em ${space}?`,
       temperature: 0,
-      max_tokens: 200,
-      top_p: 1.0,
+      max_tokens: 400,
+      top_p: 0.1,
       frequency_penalty: 0.5,
       presence_penalty: 0.0,
-      // stop: ["You:"],
+      stop: ["You:"],
     });
-    console.log(response.data.choices);
-
+    this.loading = false;
+    this.workout = response.data.choices[0].text
   }
 }
 

@@ -1,6 +1,6 @@
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { Home } from './index';
-import { Workout } from './workout';
+import Workout from './workout';
 const Stack = createNativeStackNavigator();
 
 export const HomeNavigation = () => {
